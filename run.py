@@ -21,12 +21,10 @@ while(True):
     GPIO.output(in1, False)
     GPIO.cleanup()
 
-    time.sleep(0.1)
+
+    #Make sure the belt is slowed down before the capture
+    time.sleep(0.2)
 
     result, image = cam.read()
-
-
     imwrite("out.png", image)
-
-
-    model.predict(source="out.png", show=True)
+    model.predict(source="out.png", show=True, conf=0.5, iou=0.1)
