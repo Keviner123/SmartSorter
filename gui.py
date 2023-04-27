@@ -2,6 +2,8 @@ import serial
 import time
 from datetime import datetime
 
+from BLL.ConveyorBelt import ConveyorBelt
+
 def command(ser, command):
   start_time = datetime.now()
   ser.write(str.encode(command))
@@ -40,21 +42,9 @@ def button2_click():
     command(ser, "G0 Y72 F18000 \r\n")
 
 def button3_click():
-    import RPi.GPIO as GPIO
-    import time
-
-    in1 = 16
-
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(in1, GPIO.OUT)
-
-    GPIO.output(in1, False)
-
-    GPIO.output(in1, True)
-    time.sleep(2)
-    GPIO.output(in1, False)
-    GPIO.cleanup()
-
+  conb = ConveyorBelt()
+  conb.start()
+  
 
 
 
