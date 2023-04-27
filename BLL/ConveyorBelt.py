@@ -12,6 +12,7 @@ class ConveyorBelt:
     def start(self):
         GPIO.output(self.pin, False)
         GPIO.output(self.pin, True)
-        time.sleep(2)
+
+    def stop(self):
         GPIO.output(self.pin, False)
         GPIO.cleanup()
